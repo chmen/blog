@@ -1,0 +1,2 @@
+class TextCleanersController < ApplicationController
+end
