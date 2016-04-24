@@ -3,15 +3,15 @@ class TextCleaner < ActiveRecord::Base
   FFI::Hunspell.directories.unshift(File.join(File.dirname(__FILE__), 'include/dict/'))
 
 
-  def delete_punctuation(text_with_punctuation)
+  def self.delete_punctuation(text_with_punctuation)
     text_without_punctuation = text_with_punctuation.gsub(/[\-\!\.\,\;\…\«\»\:\–\—\(\)\?\\\"1234567890]/, "")
   end
 
-  def split(text)
+  def self.split(text)
     words =  text.split(' ')
   end
 
-  def uk_hunspel_word(array_of_any_words)
+  def self.uk_hunspel_word(array_of_any_words)
     array_of_uk_dictionary_words = Array.new
     dict_uk = FFI::Hunspell.dict('uk_UA')
 
@@ -22,7 +22,7 @@ class TextCleaner < ActiveRecord::Base
     array_of_uk_dictionary_words
   end
 
-  def ru_hunspel_word(array_of_any_words)
+  def self.ru_hunspel_word(array_of_any_words)
     array_of_ru_dictionary_words = Array.new
     dict_ru = FFI::Hunspell.dict('ru_RU')
 
@@ -33,7 +33,7 @@ class TextCleaner < ActiveRecord::Base
     array_of_ru_dictionary_words
   end
 
-  def check_lenguage(text)
+  def self.check_lenguage(text)
     language = :ukrainian
     text_without_punctuation = delete_punctuation(text)
     array_of_any_words = split(text_without_punctuation)
@@ -49,7 +49,7 @@ class TextCleaner < ActiveRecord::Base
 
   end
 
-  def clean_text(text)
+  def self.clean_text(text)
     language = check_lenguage(text)
 
     text_without_punctuation = delete_punctuation(text)
