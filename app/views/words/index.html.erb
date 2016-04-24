@@ -1,0 +1,22 @@
+<h1> Hello Word </h1>
+
+<table>
+  <tr>
+    <th>Name </th>
+    <th>Spam </th>
+    <th>Ham</th>
+    <th>Language </th>
+
+  </tr>
+
+  <% @words.each do |word| %>
+  <tr>
+    <td><%= word.name %></td>
+    <td><%= word.spam %></td>
+    <td><%= word.ham %></td>
+    <td><%= word.language %></td>
+  </tr>
+  <% end %>
+
+
+</table>

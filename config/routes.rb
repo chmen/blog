@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     resources :comments
   end
   resources :text_cleaners
+  resources :words
 
   get 'welcome/index'
 

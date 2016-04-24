@@ -7,7 +7,7 @@ class TextCleanersController < ApplicationController
   def index
     @article = Article.last
 
-    @splitText = TextCleaner.check_lenguage(@article.text)
+    @clean_text = TextCleaner.clean_text(@article.text)
 
   end
 
