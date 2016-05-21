@@ -2,28 +2,33 @@ class Word < ActiveRecord::Base
 
   def self.train(clean_words, language, status)
 
-    clean_words.each do |word|
+
+    clean_words.each do |clean_word|
     # first, lets check if the word already exist
-      if Word.exists?(name: word)
-        @word = Word.where(name: word)
+      if Word.exists?(:name => clean_word)
+        word = Word.where(name: clean_word).take
         if status = 1
-          @word.ham +=1
+          word.ham += 1
+
         elsif status = 2
-          @word.spam +=1
+          word.spam += 1
         end
+        word.save
 
       else
-        @word = Word.new
-        @word.name = word
-        @word.language = language
+        word = Word.new
+        word.name = clean_word
+        word.language = language
         if status = 1
-          @word.ham = 1
-        elsif status = 2
-          @word.spam =1
-        end
+          word.ham = 1
 
+        elsif status = 2
+          word.spam = 1
+        end
+        word.save
       end
     end
+
   end
 
   # Person.exists?(name: 'David')
