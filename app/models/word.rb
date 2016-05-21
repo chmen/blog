@@ -1,8 +1,6 @@
 class Word < ActiveRecord::Base
 
   def self.train(clean_words, language, status)
-    words = Word.all
-    words.delete(all)
 
     clean_words.each do |clean_word|
     # first, lets check if the word already exist

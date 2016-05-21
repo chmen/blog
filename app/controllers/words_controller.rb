@@ -1,12 +1,22 @@
 class WordsController < ApplicationController
   def index
-    @article = Article.last
+    words = Word.all
+    words.destroy_all
 
-    @clean_text = TextCleaner.clean_text(@article.text)
+    #@article = Article.last
+    articles = Article.all
 
-    @language = TextCleaner.check_lenguage(@article.text)
+    articles.each do |article|
+      clean_text = TextCleaner.clean_text(article.text)
+      language = TextCleaner.check_lenguage(article.text)
+      Word.train(clean_text, language, article.status)
+    end
 
-    Word.train(@clean_text, @language, @article.status)
+    #@clean_text = TextCleaner.clean_text(@article.text)
+
+    #@language = TextCleaner.check_lenguage(@article.text)
+
+    #Word.train(@clean_text, @language, @article.status)
 
     @words = Word.all
   end
