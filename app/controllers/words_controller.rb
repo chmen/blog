@@ -3,20 +3,17 @@ class WordsController < ApplicationController
     words = Word.all
     words.destroy_all
 
-    #@article = Article.last
     articles = Article.all
 
+    #Word.train(["one", "two"], "rus", 1)
+    #Word.train(["two", "four"], "rus", 2)
     articles.each do |article|
       clean_text = TextCleaner.clean_text(article.text)
       language = TextCleaner.check_lenguage(article.text)
-      Word.train(clean_text, language, article.status)
+      status = article.status
+
+      Word.train(clean_text, language, status)
     end
-
-    #@clean_text = TextCleaner.clean_text(@article.text)
-
-    #@language = TextCleaner.check_lenguage(@article.text)
-
-    #Word.train(@clean_text, @language, @article.status)
 
     @words = Word.all
   end
