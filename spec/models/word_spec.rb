@@ -1,12 +1,13 @@
 require 'spec_helper'
 
+=begin
 describe Word do
   it "do some shit"
   it "do very big shit"
 end
+=end
 
-=begin
-RSpec.describe Word, "#spam_probability_word" do 
+describe Word, "#spam_probability_word" do 
   word1 = Word.new
   word1.name = 'авария'
   word1.spam = 2
@@ -24,9 +25,14 @@ RSpec.describe Word, "#spam_probability_word" do
 
   context "with spam word" do
     it "returns probability more then 0.5" do
-     expect(Word.spam_probability_word('ДТП')).to be > 0.5
+     expect(Word.spam_probability_word(word3)).to be > 0.5
     end
   end
-	
+
+  context "with ham word" do
+    it "returns probability less then 0.5" do
+      expect(Word.spam_probability_word(word2)).to be < 0.5
+    end 
+	end
+
 end
-=end
