@@ -34,6 +34,17 @@ class Word < ActiveRecord::Base
     probability = word.spam.to_f / (word.spam.to_f + word.ham.to_f)
   end
 
+  def self.spam_probability_text(words_probabilities)
+    multiplication = 1
+    multiplication_reverse = 1
+
+    words_probabilities.each do |word_probability|
+      multiplication *= word_probability
+      multiplication_reverse *= (1 - word_probability)
+    end
+
+    probability = (multiplication/(multiplication + multiplication_reverse)).round(5)
+  end
   # Person.exists?(name: 'David')
 
   #def self.get_or_new(word, language)
