@@ -45,6 +45,38 @@ class Word < ActiveRecord::Base
 
     probability = (multiplication/(multiplication + multiplication_reverse)).round(5)
   end
+  
+  def self.generate_list_of_exist_words()
+     
+  end
+
+  def self.analyze(text)
+    clean_words = TextCleaner.clean_text(text)
+    
+    #we use array only of word alredy exist
+    
+    exist_words =  
+    
+
+    words_probabilities = []
+
+    clean_words.each do |clean_word|
+      words_probabilities.add(Word.spam_probability_word(clean_word))
+    end
+
+    text_probability =  Word.spam_probability_text(words_probabilities)
+    
+    status = 2
+
+    if text_probability < 0.5
+      status = 1
+    elsif text_probability >= 0.5
+      status = 2 
+    end
+
+    status
+  end
+
   # Person.exists?(name: 'David')
 
   #def self.get_or_new(word, language)
