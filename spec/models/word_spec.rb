@@ -1,17 +1,56 @@
 require 'spec_helper'
 
 describe Word do
+
+  # TO DO: remove this section after integretion of RSpec
+  word2 = Word.new
+  word2.name = 'реактор'
+  word2.language = 'rus'
+  word2.spam = 2
+  word2.ham = 9
+
+  word3 = Word.new
+  word3.name = 'ДТП'
+  word3.language = 'rus'
+  word3.spam = 9
+  word3.ham = 1
+
+    word8 = Word.new
+  word8.name = 'реактор'
+  word8.spam = 2
+  word8.ham = 9
+
+  word9 = Word.new
+  word9.name = 'атомный'
+  word9.spam = 2
+  word9.ham = 9
+
+  word10 = Word.new
+  word10.name = 'авария'
+  word10.spam = 9
+  word10.ham = 1
+
+  word4 = Word.new
+  word4.name = 'радиоактивный'
+  word4.spam = 1
+  word4.ham = 7
+
+  word5 = Word.new
+  word5.name = 'каштан'
+  word5.spam = 12
+  word5.ham = 1
+
+  word6 = Word.new
+  word6.name = 'красный'
+  word6.spam = 5
+  word6.ham = 5
+
+  word7 = Word.new
+  word7.name = 'гибрид'
+  word7.spam = 8
+  word7.ham = 3
+
   describe  ".spam_probability_word" do
-
-    word2 = Word.new
-    word2.name = 'реактор'
-    word2.spam = 2
-    word2.ham = 9
-
-    word3 = Word.new
-    word3.name = 'ДТП'
-    word3.spam = 9
-    word3.ham = 1
 
     context "with spam word" do
       it "returns probability more then 0.5" do
@@ -54,9 +93,14 @@ describe Word do
   end
 
   describe ".generate_list_of_exist_words" do
+
+    clean_words = ["ДТП", "реактор", "кот", "собака", "Валентин"]
+    exist_words = ["ДТП", "реактор"]
+    words = [word2.name, word3.name]
+
     context "with array of both exist and non exist word" do
       it "return list of word, thet exist in Word class" do
-        Word.generate_list_of_exist_words
+        expect(Word.generate_list_of_exist_words(clean_words, words)).to eq exist_words
       end
     end
 
@@ -69,40 +113,7 @@ describe Word, "#analyze" do
   spam_text = "Конский каштан мясо-красный (лат. Aesculus ×carnea) — гибрид конского каштана обыкновенного (Aesculus hippocastanum) и конского каштана красного" 
   ham_text = "чернобыльская катастрофа — разрушение 26 апреля 1986 года четвёртого энергоблока Чернобыльской атомной электростанции, расположенной на территории Украинской ССР (ныне — Украина). Разрушение носило взрывной характер, реактор был полностью разрушен, и в окружающую среду было выброшено большое количество радиоактивных веществ." 
   
-  word8 = Word.new
-  word8.name = 'реактор'
-  word8.spam = 2
-  word8.ham = 9
 
-  word9 = Word.new
-  word9.name = 'атомный'
-  word9.spam = 2
-  word9.ham = 9
-
-  word10 = Word.new
-  word10.name = 'авария'
-  word10.spam = 9
-  word10.ham = 1
-
-  word4 = Word.new
-  word4.name = 'радиоактивный'
-  word4.spam = 1
-  word4.ham = 7
-
-  word5 = Word.new
-  word5.name = 'каштан'
-  word5.spam = 12
-  word5.ham = 1
-
-  word6 = Word.new
-  word6.name = 'красный'
-  word6.spam = 5
-  word6.ham = 5
-
-  word7 = Word.new
-  word7.name = 'гибрид'
-  word7.spam = 8
-  word7.ham = 3
 
   context "with spam text" do
     it "returns status 2" do
