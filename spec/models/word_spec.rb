@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe Word do
 
-  # TO DO: remove this section after integretion of RSpec
+  # TO DO: remove this section after integretion of Factory
+  # TO DO: after refactor it should contein no russian words
+  # 
   word2 = Word.new
   word2.name = 'реактор'
   word2.language = 'rus'
@@ -15,7 +17,7 @@ describe Word do
   word3.spam = 9
   word3.ham = 1
 
-    word8 = Word.new
+  word8 = Word.new
   word8.name = 'реактор'
   word8.spam = 2
   word8.ham = 9
@@ -94,16 +96,26 @@ describe Word do
 
   describe ".generate_list_of_exist_words" do
 
-    clean_words = ["ДТП", "реактор", "кот", "собака", "Валентин"]
-    exist_words = ["ДТП", "реактор"]
-    words = [word2.name, word3.name]
+    words = [word2.name, word3.name, word4.name, word5.name,
+     word6.name, word7.name, word8.name, word9.name, word10.name]
 
-    context "with array of both exist and non exist word" do
-      it "return list of word, thet exist in Word class" do
+    context "with array of both exist and non exist words" do
+      clean_words = ["ДТП", "реактор", "кот", "собака", "Валентин"]
+      exist_words = ["ДТП", "реактор"]
+
+      it "return array of word, thet exist in Word class" do
         expect(Word.generate_list_of_exist_words(clean_words, words)).to eq exist_words
       end
     end
 
+    context "with array of non exist words" do
+      clean_words = ["улица", "пылать", "барикада"]
+      exist_words = []
+
+      it "return empty array" do
+        expect(Word.generate_list_of_exist_words(clean_words, words)).to eq exist_words
+      end
+    end
   end
 
 end
