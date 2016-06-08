@@ -19,38 +19,47 @@ describe Word do
 
   word8 = Word.new
   word8.name = 'реактор'
+  word8.language = 'rus'
   word8.spam = 2
   word8.ham = 9
 
   word9 = Word.new
   word9.name = 'атомный'
+  word9.language = 'rus'
   word9.spam = 2
   word9.ham = 9
 
   word10 = Word.new
   word10.name = 'авария'
+  word10.language = 'rus'
   word10.spam = 9
   word10.ham = 1
 
   word4 = Word.new
   word4.name = 'радиоактивный'
+  word4.language = 'rus'
   word4.spam = 1
   word4.ham = 7
 
   word5 = Word.new
   word5.name = 'каштан'
+  word5.language = 'rus'
   word5.spam = 12
   word5.ham = 1
 
   word6 = Word.new
   word6.name = 'красный'
+  word6.language = 'rus'
   word6.spam = 5
   word6.ham = 5
 
   word7 = Word.new
   word7.name = 'гибрид'
+  word7.language = 'rus'
   word7.spam = 8
   word7.ham = 3
+
+  words = [word2, word3, word4, word5, word6, word7, word8, word9, word10]
 
   describe  ".spam_probability_word" do
 
@@ -119,7 +128,7 @@ describe Word do
   end
 
 end
-=begin
+
 describe Word, "#analyze" do
   
   spam_text = "Конский каштан мясо-красный (лат. Aesculus ×carnea) — гибрид конского каштана обыкновенного (Aesculus hippocastanum) и конского каштана красного" 
@@ -141,4 +150,4 @@ describe Word, "#analyze" do
 
 
 end
-=end
+
