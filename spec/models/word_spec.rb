@@ -6,7 +6,7 @@ describe Word do
   # TO DO: after refactor it should contein no russian words
   # 
   word2 = Word.new
-  word2.name = 'реактор'
+  word2.name = 'чернобыльский'
   word2.language = 'rus'
   word2.spam = 2
   word2.ham = 9
@@ -104,19 +104,15 @@ describe Word do
   end
 
   describe ".generate_list_of_exist_words" do
-
-    words = [word2.name, word3.name, word4.name, word5.name,
-     word6.name, word7.name, word8.name, word9.name, word10.name]
-
     context "with array of both exist and non exist words" do
       clean_words = ["ДТП", "реактор", "кот", "собака", "Валентин"]
-      exist_words = ["ДТП", "реактор"]
+      exist_words = [word3, word8]
 
       it "return array of word, thet exist in Word class" do
         expect(Word.generate_list_of_exist_words(clean_words, words)).to eq exist_words
       end
     end
-
+=begin
     context "with array of non exist words" do
       clean_words = ["улица", "пылать", "барикада"]
       exist_words = []
@@ -125,10 +121,11 @@ describe Word do
         expect(Word.generate_list_of_exist_words(clean_words, words)).to eq exist_words
       end
     end
+=end
   end
 
 end
-
+=begin
 describe Word, "#analyze" do
   
   spam_text = "Конский каштан мясо-красный (лат. Aesculus ×carnea) — гибрид конского каштана обыкновенного (Aesculus hippocastanum) и конского каштана красного" 
@@ -150,4 +147,4 @@ describe Word, "#analyze" do
 
 
 end
-
+=end

@@ -49,16 +49,19 @@ class Word < ActiveRecord::Base
   def self.generate_list_of_exist_words(clean_words, words)
     exist_words = []
     
-
+    #should be more gorgeous solution, than inserted loop
     clean_words.each do |clean_word|
-      if words.include?(clean_word)
-        exist_words.push(clean_word)
+      words.each do |word|
+        if word.name == clean_word
+          exist_words.push(word)
+        end
       end
     end
 
-    exist_words
+    exist_words 
   end
 
+=begin
   def self.analyze(text)
     clean_words = TextCleaner.clean_text(text)
 
@@ -85,7 +88,7 @@ class Word < ActiveRecord::Base
 
     status
   end
-
+=end
   # Person.exists?(name: 'David')
 
   #def self.get_or_new(word, language)
