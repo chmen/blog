@@ -4,7 +4,7 @@ describe Word do
 
   # TO DO: remove this section after integretion of Factory
   # TO DO: after refactor it should contein no russian words
-  # 
+  #
   word2 = Word.new
   word2.name = 'чернобыльский'
   word2.language = 'rus'
@@ -124,27 +124,25 @@ describe Word do
 
   end
 
-end
-=begin
-describe Word, "#analyze" do
-  
-  spam_text = "Конский каштан мясо-красный (лат. Aesculus ×carnea) — гибрид конского каштана обыкновенного (Aesculus hippocastanum) и конского каштана красного" 
-  ham_text = "чернобыльская катастрофа — разрушение 26 апреля 1986 года четвёртого энергоблока Чернобыльской атомной электростанции, расположенной на территории Украинской ССР (ныне — Украина). Разрушение носило взрывной характер, реактор был полностью разрушен, и в окружающую среду было выброшено большое количество радиоактивных веществ." 
-  
 
 
-  context "with spam text" do
-    it "returns status 2" do
-      expect(Word.analyze(spam_text)).to be 2
+  describe ".analyze" do
+
+    spam_text = "Конский каштан мясо-красный (лат. Aesculus ×carnea) — гибрид конского каштана обыкновенного (Aesculus hippocastanum) и конского каштана красного"
+    ham_text = "чернобыльская катастрофа — разрушение 26 апреля 1986 года четвёртого энергоблока Чернобыльской атомной электростанции, расположенной на территории Украинской ССР (ныне — Украина). Разрушение носило взрывной характер, реактор был полностью разрушен, и в окружающую среду было выброшено большое количество радиоактивных веществ."
+
+    context "with spam text" do
+      it "returns status 2" do
+        expect(Word.analyze(spam_text, words)).to be 2
+      end
     end
-  end
-  
-  context "with ham text" do
-    it "returns status 1" do
-      expect(Word.analyze(ham_text)).to be 1
+
+    context "with ham text" do
+      it "returns status 1" do
+        expect(Word.analyze(ham_text, words)).to be 1
+      end
     end
+
+
   end
-
-
 end
-=end
