@@ -112,7 +112,7 @@ describe Word do
         expect(Word.generate_list_of_exist_words(clean_words, words)).to eq exist_words
       end
     end
-=begin
+
     context "with array of non exist words" do
       clean_words = ["улица", "пылать", "барикада"]
       exist_words = []
@@ -121,7 +121,7 @@ describe Word do
         expect(Word.generate_list_of_exist_words(clean_words, words)).to eq exist_words
       end
     end
-=end
+
   end
 
 end
