@@ -108,7 +108,7 @@ describe Word do
       clean_words = ["ДТП", "реактор", "кот", "собака", "Валентин"]
       exist_words = [word3, word8]
 
-      it "return array of word, thet exist in Word class" do
+      it "return array of word, that exist in Word class" do
         expect(Word.generate_list_of_exist_words(clean_words, words)).to eq exist_words
       end
     end

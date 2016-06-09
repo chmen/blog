@@ -61,19 +61,16 @@ class Word < ActiveRecord::Base
     exist_words 
   end
 
-=begin
-  def self.analyze(text)
+
+  def self.analyze(text, words)
     clean_words = TextCleaner.clean_text(text)
-
-    #we use array only of word alredy exist
-
-    exist_words =
-
-
+    #we use array only of word thet alredy exist
+    exist_words = Word.generate_list_of_exist_words(clean_words, words)
+    
       words_probabilities = []
 
-    clean_words.each do |clean_word|
-      words_probabilities.add(Word.spam_probability_word(clean_word))
+    exist_words.each do |exist_word|
+      words_probabilities.push(Word.spam_probability_word(exist_word))
     end
 
     text_probability =  Word.spam_probability_text(words_probabilities)
@@ -88,7 +85,7 @@ class Word < ActiveRecord::Base
 
     status
   end
-=end
+
   # Person.exists?(name: 'David')
 
   #def self.get_or_new(word, language)
