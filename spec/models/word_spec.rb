@@ -63,9 +63,15 @@ describe Word do
 
   describe ".get_or_new" do
     context "with exist word" do
-      it "return word" do 
-        #by some reason it work only if compare name but not word itself
+      it "return word with same name" do 
+        #by some reason it work only if compare names, but not words itself
         expect(Word.get_or_new("реактор", "rus", words).name).to eq word8.name
+      end
+      it "return object of class Word" do
+        expect(Word.get_or_new("реактор", "rus", words).class).to eq Word
+      end
+      it "return word with proper language" do
+        expect(Word.get_or_new("реактор", "rus", words).language).to eq word8.language
       end
     end
   end
