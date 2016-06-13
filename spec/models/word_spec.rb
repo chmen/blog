@@ -61,6 +61,13 @@ describe Word do
 
   words = [word2, word3, word4, word5, word6, word7, word8, word9, word10]
 
+  describe ".get_or_new" do
+    context "with exist word" do
+      it "return word" do 
+        expect(Word.get_or_new("реактор", "rus", words)).to be word8
+    end
+  end
+
   describe  ".spam_probability_word" do
 
     context "with spam word" do
