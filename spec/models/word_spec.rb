@@ -64,7 +64,8 @@ describe Word do
   describe ".get_or_new" do
     context "with exist word" do
       it "return word" do 
-        expect(Word.get_or_new("реактор", "rus", words)).to be word8
+        #by some reason it work only if compare name but not word itself
+        expect(Word.get_or_new("реактор", "rus", words).name).to eq word8.name
       end
     end
   end

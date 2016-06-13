@@ -90,6 +90,14 @@ class Word < ActiveRecord::Base
 
   def self.get_or_new(clean_word, language, words)
 
+    words.each do |word|
+      if word.name = clean_word 
+        if word.language = language
+          return word
+        end
+      end
+    end
+    
   #  record = Word.where(name: word)
   #  if  record.instance_variable_defined?
   #      record.name = word
