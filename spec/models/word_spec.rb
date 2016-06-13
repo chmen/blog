@@ -65,6 +65,7 @@ describe Word do
     context "with exist word" do
       it "return word" do 
         expect(Word.get_or_new("реактор", "rus", words)).to be word8
+      end
     end
   end
 

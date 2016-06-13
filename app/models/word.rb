@@ -88,7 +88,7 @@ class Word < ActiveRecord::Base
 
   # Person.exists?(name: 'David')
 
-  #def self.get_or_new(word, language)
+  def self.get_or_new(clean_word, language, words)
 
   #  record = Word.where(name: word)
   #  if  record.instance_variable_defined?
@@ -97,7 +97,7 @@ class Word < ActiveRecord::Base
   #    end
   #    ecord = BayesWord.new
   #  end
-  #end
+  end
 
 
   #def self.train(clean_words, language, spam)
