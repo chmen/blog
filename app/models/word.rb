@@ -48,7 +48,7 @@ class Word < ActiveRecord::Base
 
   def self.generate_list_of_exist_words(clean_words, words)
     exist_words = []
-    
+
     #should be more gorgeous solution, than inserted loop
     clean_words.each do |clean_word|
       words.each do |word|
@@ -58,7 +58,7 @@ class Word < ActiveRecord::Base
       end
     end
 
-    exist_words 
+    exist_words
   end
 
 
@@ -66,8 +66,8 @@ class Word < ActiveRecord::Base
     clean_words = TextCleaner.clean_text(text)
     #we use array only of word thet alredy exist
     exist_words = Word.generate_list_of_exist_words(clean_words, words)
-    
-      words_probabilities = []
+
+    words_probabilities = []
 
     exist_words.each do |exist_word|
       words_probabilities.push(Word.spam_probability_word(exist_word))
@@ -90,14 +90,40 @@ class Word < ActiveRecord::Base
 
   def self.get_or_new(clean_word, language, words)
 
+    words_names = []
+
+    word = Word.new
+
     words.each do |word|
-      if word.name = clean_word 
-        if word.language = language
-          return word
+      words_names.push(word.name)
+    end
+
+    if words_names.include?(clean_word)
+      words.each do |exist_word|
+        if exist_word.name == clean_word
+          if exist_word.language == language
+            word = exist_word
+          end
         end
       end
+    else 
+      new_word = Word.new
+      new_word.name = clean_word
+      new_word.language = language
+      new_word.spam = 0
+      new_word.ham = 0
+      word = new_word
+
     end
+
+
+=begin
     
+
+    
+    
+    word = new_word
+
   #  record = Word.where(name: word)
   #  if  record.instance_variable_defined?
   #      record.name = word
@@ -105,6 +131,9 @@ class Word < ActiveRecord::Base
   #    end
   #    ecord = BayesWord.new
   #  end
+  new_word
+=end
+    word
   end
 
 

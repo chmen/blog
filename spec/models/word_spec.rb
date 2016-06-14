@@ -74,6 +74,27 @@ describe Word do
         expect(Word.get_or_new("реактор", "rus", words).language).to eq word8.language
       end
     end
+
+    context "with nonexistent word" do
+      clean_word = "яблоко"
+      language = "rus"
+
+      it "create new word" do
+        expect(Word.get_or_new(clean_word, language, words).class).to eq Word
+      end
+      it "create word with proper name " do
+        expect(Word.get_or_new(clean_word, language, words).name).to eq "яблоко"
+      end
+      it "return word with proper language" do
+        expect(Word.get_or_new(clean_word, language, words).language).to eq language
+      end
+      it "return spam value 0" do
+        expect(Word.get_or_new(clean_word, language, words).spam).to eq 0
+      end
+      it "return ham value 0" do
+        expect(Word.get_or_new(clean_word, language, words).ham).to eq 0
+      end
+    end 
   end
 
   describe  ".spam_probability_word" do
