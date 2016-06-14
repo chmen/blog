@@ -86,53 +86,21 @@ class Word < ActiveRecord::Base
     status
   end
 
-  # Person.exists?(name: 'David')
-
   def self.get_or_new(clean_word, language, words)
-
-    words_names = []
-
     word = Word.new
 
     words.each do |word|
-      words_names.push(word.name)
-    end
-
-    if words_names.include?(clean_word)
-      words.each do |exist_word|
-        if exist_word.name == clean_word
-          if exist_word.language == language
-            word = exist_word
-          end
+      if word.name == clean_word
+        if word.language == language
+          return word
         end
       end
-    else 
-      new_word = Word.new
-      new_word.name = clean_word
-      new_word.language = language
-      new_word.spam = 0
-      new_word.ham = 0
-      word = new_word
-
     end
 
-
-=begin
-    
-
-    
-    
-    word = new_word
-
-  #  record = Word.where(name: word)
-  #  if  record.instance_variable_defined?
-  #      record.name = word
-  #    record.language = language
-  #    end
-  #    ecord = BayesWord.new
-  #  end
-  new_word
-=end
+    word.name = clean_word
+    word.language = language
+    word.spam = 0
+    word.ham = 0
     word
   end
 
