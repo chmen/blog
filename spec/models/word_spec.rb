@@ -63,17 +63,33 @@ describe Word do
 
   describe ".train" do
     context "with existent word" do
-      it "increases spam value by 1, if status 2(spam)" do
-        start_spam = word3.spam
-        expect(Word.train("ДТП", "rus", 2, words).spam).to eq (start_spam + 1)  
+      context " if status 2(spam)" do
+        it "increases spam value by 1 " do
+          start_spam = word3.spam
+          expect(Word.train("ДТП", "rus", 2, words).spam).to eq (start_spam + 1)
+        end
+        it "leaves ham value without changes" do
+          start_ham = word3.ham
+          expect(Word.train("ДТП", "rus", 2, words).ham).to eq (start_ham)
+        end
       end
-    end    
+    end
+    context "with nonexistent word" do 
+      context " if status 1(ham)" do
+        it "increase ham value to 1" do
+          expect(Word.train("атом", "rus", 1, words).ham).to eq 1
+        end
+        it "leaves spam value 0" do
+          expect(Word.train("атом", "rus", 1, words).spam).to eq 0
+        end
+      end
+    end
 
   end
 
   describe ".get_or_new" do
     context "with exist word" do
-      it "return word with same name" do 
+      it "return word with same name" do
         #by some reason it work only if compare names, but not words itself
         expect(Word.get_or_new("реактор", "rus", words).name).to eq word8.name
       end
@@ -104,7 +120,7 @@ describe Word do
       it "return ham value 0" do
         expect(Word.get_or_new(clean_word, language, words).ham).to eq 0
       end
-    end 
+    end
   end
 
   describe  ".spam_probability_word" do

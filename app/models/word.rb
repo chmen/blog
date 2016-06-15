@@ -10,32 +10,6 @@ class Word < ActiveRecord::Base
     end
 
     word
-=begin
-    clean_words.each do |clean_word|
-      # first, lets check if the word already exist
-      if Word.exists?(:name => clean_word, :language => language)
-        word = Word.where(name: clean_word, :language => language).take
-        if status == 2
-          word.ham += 1
-
-        elsif status == 1
-          word.spam += 1
-        end
-      else
-        word = Word.new
-        word.name = clean_word
-        word.language = language
-        if status == 2
-          word.ham = 1
-          word.spam = 0
-        elsif status == 1
-          word.spam = 1
-          word.ham = 0
-        end
-      end
-      word.save
-    end
-=end
   end
 
   def self.spam_probability_word(word)
