@@ -64,7 +64,8 @@ describe Word do
   describe ".train" do
     context "with existent word" do
       it "increases spam value by 1, if status 2(spam)" do
-        expect(Word.train("реактор", "rus", 2)).to eq (word8.spam + 1)  
+        start_spam = word3.spam
+        expect(Word.train("ДТП", "rus", 2, words).spam).to eq (start_spam + 1)  
       end
     end    
 

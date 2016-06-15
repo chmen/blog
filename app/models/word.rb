@@ -1,6 +1,15 @@
 class Word < ActiveRecord::Base
 
-  def self.train(clean_words, language, status)
+  def self.train(clean_word, language, status, words)
+    word = Word.get_or_new(clean_word, language, words)
+
+    if status == 2
+    	word.spam += 1
+    elsif status == 1
+    	word.ham += 1
+    end
+
+    word
 =begin
     clean_words.each do |clean_word|
       # first, lets check if the word already exist
