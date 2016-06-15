@@ -61,6 +61,15 @@ describe Word do
 
   words = [word2, word3, word4, word5, word6, word7, word8, word9, word10]
 
+  describe ".train" do
+    context "with existent word" do
+      it "increases spam value by 1, if status 2(spam)" do
+        expect(Word.train("реактор", "rus", 2)).to eq (word8.spam + 1)  
+      end
+    end    
+
+  end
+
   describe ".get_or_new" do
     context "with exist word" do
       it "return word with same name" do 

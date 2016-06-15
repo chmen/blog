@@ -1,7 +1,7 @@
 class Word < ActiveRecord::Base
 
   def self.train(clean_words, language, status)
-
+=begin
     clean_words.each do |clean_word|
       # first, lets check if the word already exist
       if Word.exists?(:name => clean_word, :language => language)
@@ -26,7 +26,7 @@ class Word < ActiveRecord::Base
       end
       word.save
     end
-
+=end
   end
 
   def self.spam_probability_word(word)
