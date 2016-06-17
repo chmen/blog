@@ -61,6 +61,20 @@ describe Word do
 
   words = [word2, word3, word4, word5, word6, word7, word8, word9, word10]
 
+  spam_text = "Конский каштан мясо-красный (лат. Aesculus ×carnea) — гибрид конского каштана обыкновенного (Aesculus hippocastanum) и конского каштана красного"
+  ham_text = "чернобыльская катастрофа — разрушение 26 апреля 1986 года четвёртого энергоблока Чернобыльской атомной электростанции, расположенной на территории Украинской ССР (ныне — Украина). Разрушение носило взрывной характер, реактор был полностью разрушен, и в окружающую среду было выброшено большое количество радиоактивных веществ."
+
+  describe ".mass_train" do
+    context "with spam text(status 2)" do
+      it " increase spam value of existatnt word by 1" do
+        word5.spam = start_spam
+        Word.mass_train(spam_text, 2, words)
+        expect(word5.spam). to eq (start_spam + 1)
+      end
+    end
+  end
+
+
   describe ".train" do
     context "with existent word" do
       context " if status 2(spam)" do
@@ -74,7 +88,7 @@ describe Word do
         end
       end
     end
-    context "with nonexistent word" do 
+    context "with nonexistent word" do
       context " if status 1(ham)" do
         it "increase ham value to 1" do
           expect(Word.train("атом", "rus", 1, words).ham).to eq 1
@@ -189,9 +203,6 @@ describe Word do
 
 
   describe ".analyze" do
-
-    spam_text = "Конский каштан мясо-красный (лат. Aesculus ×carnea) — гибрид конского каштана обыкновенного (Aesculus hippocastanum) и конского каштана красного"
-    ham_text = "чернобыльская катастрофа — разрушение 26 апреля 1986 года четвёртого энергоблока Чернобыльской атомной электростанции, расположенной на территории Украинской ССР (ныне — Украина). Разрушение носило взрывной характер, реактор был полностью разрушен, и в окружающую среду было выброшено большое количество радиоактивных веществ."
 
     context "with spam text" do
       it "returns status 2" do
