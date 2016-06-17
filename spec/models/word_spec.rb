@@ -213,6 +213,13 @@ describe Word do
     end
 
     context "with array of existent word, but with wrong language" do
+      clean_words = ["реактор", "каштан"]
+      exist_words = []
+      language = "ukr"
+      
+      it "return empty array" do
+        expect(Word.generate_list_of_exist_words(clean_words, language, words)).to eq exist_words
+      end
 
     end
 
