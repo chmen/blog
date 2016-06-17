@@ -39,7 +39,7 @@ class Word < ActiveRecord::Base
     probability = (multiplication/(multiplication + multiplication_reverse)).round(5)
   end
 
-  def self.generate_list_of_exist_words(clean_words, words)
+  def self.generate_list_of_exist_words(clean_words, language, words)
     exist_words = []
 
     #should be more gorgeous solution, than inserted loop
@@ -57,8 +57,10 @@ class Word < ActiveRecord::Base
 
   def self.analyze(text, words)
     clean_words = TextCleaner.clean_text(text)
+    language = TextCleaner.check_language(text)
+
     #we use array only of word thet alredy exist
-    exist_words = Word.generate_list_of_exist_words(clean_words, words)
+    exist_words = Word.generate_list_of_exist_words(clean_words, language, words)
 
     words_probabilities = []
 

@@ -69,17 +69,17 @@ describe Word do
       start_spam = word5.spam
       start_ham = word5.ham
       Word.mass_train(spam_text, 2, words)
-      
-      it " increase spam value of existatnt word by 1" do  
+
+      it " increase spam value of existatnt word by 1" do
         expect(word5.spam). to eq (start_spam + 1)
       end
-      it "leaves ham value without changes" do   
+      it "leaves ham value without changes" do
         expect(word5.ham). to eq start_ham
       end
     end
     context "with ham text(status 1)" do
       it " increase ham value of existatnt word by 1" do
-        start_ham = word8.ham 
+        start_ham = word8.ham
         Word.mass_train(ham_text, 1, words)
         expect(word8.ham). to eq (start_ham + 1)
       end
@@ -192,22 +192,28 @@ describe Word do
   end
 
   describe ".generate_list_of_exist_words" do
-    context "with array of both exist and non exist words" do
+    context "with array of both exista and non exist words" do
       clean_words = ["ДТП", "реактор", "кот", "собака", "Валентин"]
       exist_words = [word3, word8]
+      language = "rus"
 
       it "return array of word, that exist in Word class" do
-        expect(Word.generate_list_of_exist_words(clean_words, words)).to eq exist_words
+        expect(Word.generate_list_of_exist_words(clean_words, language, words)).to eq exist_words
       end
     end
 
     context "with array of non exist words" do
       clean_words = ["улица", "пылать", "барикада"]
       exist_words = []
+      language = "rus"
 
       it "return empty array" do
-        expect(Word.generate_list_of_exist_words(clean_words, words)).to eq exist_words
+        expect(Word.generate_list_of_exist_words(clean_words, language, words)).to eq exist_words
       end
+    end
+
+    context "with array of existent word, but with wrong language" do
+
     end
 
   end
