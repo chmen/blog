@@ -33,8 +33,8 @@ class TextCleaner < ActiveRecord::Base
     array_of_ru_dictionary_words
   end
 
-  def self.check_lenguage(text)
-    language = :ukrainian
+  def self.check_language(text)
+    language = "ukr"
     text_without_punctuation = delete_punctuation(text)
     array_of_any_words = split(text_without_punctuation)
 
@@ -42,22 +42,22 @@ class TextCleaner < ActiveRecord::Base
     number_of_russian_words = ru_hunspel_word(array_of_any_words).length
 
     if number_of_russian_words >= number_of_ukrainian_words
-      language = :russian
+      language = "rus"
     elsif number_of_russian_words < number_of_ukrainian_words
-      language = :ukrainian
+      language = "ukr"
     end
 
   end
 
   def self.clean_text(text)
-    language = check_lenguage(text)
+    language = check_language(text)
 
     text_without_punctuation = delete_punctuation(text)
     array_of_any_words = split(text_without_punctuation)
 
-    if language == :russian
+    if language == "rus"
       dictionary_words_with_duplication = ru_hunspel_word(array_of_any_words)
-    elsif language == :ukrainian
+    elsif language == "ukr"
       dictionary_words_with_duplication = uk_hunspel_word(array_of_any_words)
     end
 
