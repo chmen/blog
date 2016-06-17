@@ -67,7 +67,7 @@ describe Word do
   describe ".mass_train" do
     context "with spam text(status 2)" do
       it " increase spam value of existatnt word by 1" do
-        word5.spam = start_spam
+        start_spam = word5.spam 
         Word.mass_train(spam_text, 2, words)
         expect(word5.spam). to eq (start_spam + 1)
       end
