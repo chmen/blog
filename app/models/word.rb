@@ -1,12 +1,22 @@
 class Word < ActiveRecord::Base
 
+  def self.mass_train(text, status, words)
+    clean_words = TextCleaner.clean_text(text)
+    language = TextCleaner.check_language(text)
+    
+    clean_words.each do |clean_word|
+      Word.train(clean_word, language, status, words)
+    end
+
+  end
+
   def self.train(clean_word, language, status, words)
     word = Word.get_or_new(clean_word, language, words)
 
     if status == 2
-    	word.spam += 1
+      word.spam += 1
     elsif status == 1
-    	word.ham += 1
+      word.ham += 1
     end
 
     word
