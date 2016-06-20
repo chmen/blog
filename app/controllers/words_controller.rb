@@ -1,4 +1,24 @@
 class WordsController < ApplicationController
+
+def index
+=begin
+  words = Word.all
+  words.destroy_all
+  
+  articles = Article.all
+  articles.each do |article|
+    words = Word.all  
+    text = article.text
+    status = article.status
+    Word.mass_train(text, status, words)
+  end
+=end
+  @words = Word.all  
+end
+
+
+
+=begin  
   def index
     words = Word.all
     words.destroy_all
@@ -17,4 +37,5 @@ class WordsController < ApplicationController
 
     @words = Word.all
   end
+=end
 end

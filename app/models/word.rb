@@ -18,7 +18,7 @@ class Word < ActiveRecord::Base
     elsif status == 1
       word.ham += 1
     end
-
+    word.save
     word
   end
 
