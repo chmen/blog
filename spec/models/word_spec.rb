@@ -59,7 +59,13 @@ describe Word do
   word7.spam = 8
   word7.ham = 3
 
-  words = [word2, word3, word4, word5, word6, word7, word8, word9, word10]
+  word11 = Word.new
+  word11.name = 'реактор'
+  word11.language = 'ukr'
+  word11.spam = 2
+  word11.ham = 0
+
+  words = [word2, word3, word4, word5, word6, word7, word8, word9, word10, word11]
 
   spam_text = "Конский каштан мясо-красный (лат. Aesculus ×carnea) — гибрид конского каштана обыкновенного (Aesculus hippocastanum) и конского каштана красного"
   ham_text = "чернобыльская катастрофа — разрушение 26 апреля 1986 года четвёртого энергоблока Чернобыльской атомной электростанции, расположенной на территории Украинской ССР (ныне — Украина). Разрушение носило взрывной характер, реактор был полностью разрушен, и в окружающую среду было выброшено большое количество радиоактивных веществ."
@@ -213,7 +219,7 @@ describe Word do
     end
 
     context "with array of existent word, but with wrong language" do
-      clean_words = ["реактор", "каштан"]
+      clean_words = ["ДТП", "каштан"]
       exist_words = []
       language = "ukr"
       
