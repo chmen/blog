@@ -3,7 +3,7 @@ class Word < ActiveRecord::Base
   def self.mass_train(text, status, words)
     clean_words = TextCleaner.clean_text(text)
     language = TextCleaner.check_language(text)
-    
+
     clean_words.each do |clean_word|
       Word.train(clean_word, language, status, words)
     end
@@ -46,7 +46,9 @@ class Word < ActiveRecord::Base
     clean_words.each do |clean_word|
       words.each do |word|
         if word.name == clean_word
-          exist_words.push(word)
+          if word.language == language
+            exist_words.push(word)
+          end
         end
       end
     end
