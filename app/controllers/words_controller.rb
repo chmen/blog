@@ -1,6 +1,11 @@
 class WordsController < ApplicationController
 
 def index
+
+  articles = Article.all
+  words = Word.all
+
+  @accuracy = Word.generate_accuracy(articles, words)
 =begin
   words = Word.all
   words.destroy_all
