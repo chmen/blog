@@ -47,7 +47,9 @@ class Word < ActiveRecord::Base
       words.each do |word|
         if word.name == clean_word
           if word.language == language
-            exist_words.push(word)
+            if word.ham + word.spam > 1
+              exist_words.push(word)
+            end
           end
         end
       end
@@ -107,18 +109,18 @@ class Word < ActiveRecord::Base
 
     articles.each do |article|
       number_of_experiments += 1
-      text = article.text 
+      text = article.text
 
       experimental_status = Word.analyze(text, words)
       real_status = article.status
 
-      if real_status == experimental_status 
+      if real_status == experimental_status
         positive_experiments += 1
       end
     end
 
     accuracy = positive_experiments.to_f / number_of_experiments.to_f * 100
-    
+
   end
 
 end
