@@ -231,7 +231,27 @@ describe Word do
 
   end
 
+  describe ".generate_accuracy" do
+    context " with all correct status" do
+    
+    article1 = Article.new
+    article1.text = "атомный реактор это хорошо"
+    article1.status = 1
 
+    article2 = Article.new
+    article2.text = "метановый реактор это чуть хуже"
+    article2.status = 1
+
+    article3 = Article.new
+    article3.text = "гибрид красного каштана не по теме"
+    article3.status = 2
+
+    articles = [articel1, article2, article3]
+      it "return accuracy more than 99%" do
+        expect(Word.generate_accuracy(articles, words)). to be > 99.0
+      end
+    end
+  end
 
   describe ".analyze" do
 
