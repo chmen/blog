@@ -101,19 +101,24 @@ class Word < ActiveRecord::Base
     word
   end
 
+  def self.generate_accuracy(articles, words)
+    number_of_experiments = 0
+    positive_experiments = 0
 
-  #def self.train(clean_words, language, spam)
-  #  clean_words.each do |word|
-  #    get_or_new(word)
-  #
-  #    if spam = true
-  #      bayesWord.spam += 1
-  #    end
-  #    if spam = false
-  #      bayesWord.ham += 1
-  #    end
+    articles.each do |article|
+      number_of_experiments += 1
+      text = article.text 
 
-  #  end
-  #end
+      experimental_status = Word.analyze(text, words)
+      real_status = article.status
+
+      if real_status == experimental_status 
+        positive_experiments += 1
+      end
+    end
+
+    accuracy = positive_experiments.to_f / number_of_experiments.to_f * 100
+    
+  end
 
 end

@@ -246,7 +246,7 @@ describe Word do
     article3.text = "гибрид красного каштана не по теме"
     article3.status = 2
 
-    articles = [articel1, article2, article3]
+    articles = [article1, article2, article3]
       it "return accuracy more than 99%" do
         expect(Word.generate_accuracy(articles, words)). to be > 99.0
       end
