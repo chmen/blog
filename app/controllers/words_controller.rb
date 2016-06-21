@@ -6,18 +6,7 @@ def index
   words = Word.all
 
   @accuracy = Word.generate_accuracy(articles, words)
-=begin
-  words = Word.all
-  words.destroy_all
-  
-  articles = Article.all
-  articles.each do |article|
-    words = Word.all  
-    text = article.text
-    status = article.status
-    Word.mass_train(text, status, words)
-  end
-=end
+
   @words = Word.all  
 end
 
