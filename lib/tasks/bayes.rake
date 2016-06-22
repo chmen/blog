@@ -12,4 +12,13 @@ namespace :bayes do
     end
 
   end
+
+  task :generate_accuracy => :environment do
+    articles = Article.all
+    words = Word.all
+
+    accuracy = Word.generate_accuracy(articles, words)
+
+    puts "accuracy of naiv bayes classifier is #{accuracy} %" 
+  end
 end

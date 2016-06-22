@@ -2,11 +2,6 @@ class WordsController < ApplicationController
 
 def index
 
-  articles = Article.all
-  words = Word.all
-
-  @accuracy = Word.generate_accuracy(articles, words)
-
   @words = Word.all  
 end
 
