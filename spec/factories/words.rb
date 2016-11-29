@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :word do
-    name "MyString"
-    spam 1
-    ham 1
-    language "MyString"
+    name 'реактор'
+    spam 13
+    ham 5
+    language 'rus'
   end
 end
